@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Pas d'en-tête HTTP possible sur GitHub Pages : la politique de sécurité passe par cette balise.
+     Aucun script, aucun style inline, aucun tiers chargé. Seul l'envoi du formulaire part vers Brevo. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; form-action https://*.sibforms.com; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Shift · Vérifie ta boîte</title>
+<meta name="description" content="Il reste à confirmer ton adresse e-mail.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<!--
+  Chiffres recopiés du calculateur (dépôt shift : backend/apps/aides/data/aides.yaml et
+  cout-reference.yaml). Vérifiés le 08/10/2026 (aides) et le 14/10/2026 (coût).
+  Quand une aide change là-bas, cette page se met à jour à la main.
+-->
+<header class="nav">
+  <a class="marque" href="./" aria-label="Shift, accueil">
+    <svg class="pastille" viewBox="0 0 48 48" aria-hidden="true">
+      <rect class="boitier" width="48" height="48" rx="13"/>
+      <path class="grille" d="M12 12H36M12 24H36M12 36H36"/>
+      <path class="trajet" d="M36 12H12V24H36V36H12"/>
+      <circle class="bille" cx="12" cy="36" r="4.6"/>
+    </svg>
+    <span>shift</span>
+  </a>
+</header>
+
+<main class="cadre texte">
+<h1>Vérifie ta boîte</h1>
+<p>Clique sur le lien de confirmation qu'on vient de t'envoyer. Sans ce clic, on ne t'écrira pas.</p>
+<p>Rien reçu&nbsp;? Regarde dans tes courriers indésirables.</p>
+<p><a class="champ-lien" href="./#liste">Corriger mon adresse</a></p>
+</main>
+
+<footer class="pied">
+  <div class="cadre">
+    <div class="pied-haut">
+      <div>
+        <p class="pied-marque">Shift</p>
+        <p class="pied-promesse">Gratuit pour toi, sans compte.</p>
+      </div>
+      <a href="mentions-legales.html">Mentions légales et confidentialité</a>
+    </div>
+    <p class="pied-mot">© 2026 Shift</p>
+  </div>
+</footer>
+</body>
+</html>
