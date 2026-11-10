@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Pas d'en-tête HTTP possible sur GitHub Pages : la politique de sécurité passe par cette balise.
      Aucun script, aucun style inline, aucun tiers chargé. Seul l'envoi du formulaire part vers Brevo. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; form-action https://*.sibforms.com; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; form-action https://*.sibforms.com https://vivienmcz.github.io; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <title>Shift · Vérifie ta boîte</title>
 <meta name="description" content="Il reste à confirmer ton adresse e-mail.">
@@ -13,11 +13,6 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
-<!--
-  Chiffres recopiés du calculateur (dépôt shift : backend/apps/aides/data/aides.yaml et
-  cout-reference.yaml). Vérifiés le 08/10/2026 (aides) et le 14/10/2026 (coût).
-  Quand une aide change là-bas, cette page se met à jour à la main.
--->
 <header class="nav">
   <a class="marque" href="./" aria-label="Shift, accueil">
     <svg class="pastille" viewBox="0 0 48 48" aria-hidden="true">

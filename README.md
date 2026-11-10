@@ -12,6 +12,8 @@ GitHub Pages : aucun serveur, aucun script, aucun cookie, aucun secret.
 
 Écran Figma de référence : fichier `azam20tqlvBolPypsIG8IE`, cadres `363:2272` (1440) et `365:2264` (390).
 
+Tester en local : `python3 -m http.server 8000` dans ce dossier, puis http://127.0.0.1:8000.
+
 ## Avant de publier (à faire une fois)
 
 1. **Brevo** : créer le compte. Dans les réglages, accepter le contrat de sous-traitance (DPA) et activer
