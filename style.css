@@ -216,7 +216,7 @@ body:has(#pause:checked) *,body:has(#pause:checked) *::before,body:has(#pause:ch
 }
 
 /* page de vente : chiffres courts, notes vers les sources */
-.note{font-size:.5em; font-weight:700; vertical-align:super; line-height:0; margin-left:.08em; text-decoration:none; color:inherit; opacity:.85; padding:0 .15em}
+.note{font-size:.5em; font-weight:700; vertical-align:super; line-height:0; margin-left:.08em; text-decoration:none; color:inherit; opacity:.85; display:inline-block; min-width:24px; min-height:24px; line-height:24px; text-align:center}
 .titre .note,.montant .note{font-size:.32em}
 .note:hover{text-decoration:underline}
 .chiffre-mot{font-weight:800; font-size:clamp(1.15rem,1.8vw,1.45rem); line-height:1.2; max-width:22ch}
