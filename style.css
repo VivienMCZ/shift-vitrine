@@ -1,0 +1,126 @@
+/* Vitrine Shift. Jetons repris de DESIGN.md (dépôt shift) : registre « aplat plein »,
+   bleu #1B1AF5 seul, Archivo seule. Contrastes mesurés dans le prototype. */
+@font-face{
+  font-family:'Archivo';
+  src:url('fonts/archivo-latin.woff2') format('woff2');
+  font-weight:400 900; font-style:normal; font-display:swap;
+}
+:root{
+  --champ:#1B1AF5;
+  --champ-clair:#C2C1FF;   /* texte secondaire sur le bleu : 4,92:1 */
+  --encre:#0E0F14;
+  --papier:#F7F7F4;
+  --bande:#EEEEFE;          /* bleu très pâle de la seconde bande */
+  --blanc:#FFFFFF;
+  --gris:#5B6170;           /* texte secondaire sur papier : 5,9:1 */
+  --trait:#D9D9E6;
+  --marge:clamp(16px,2.8vw,40px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:var(--papier); color:var(--encre); line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit; text-underline-offset:3px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--champ); outline-offset:2px}
+.cadre{max-width:1440px; margin:0 auto; padding:0 var(--marge)}
+
+/* barre : le logo seul */
+.nav{background:var(--champ); color:var(--blanc); padding:14px var(--marge) 0}
+.marque{display:inline-flex; align-items:center; gap:10px; min-height:44px; text-decoration:none}
+.marque span{font-weight:800; font-size:19px; letter-spacing:-.04em}
+.pastille{width:38px; height:38px}
+.pastille .boitier{fill:var(--blanc)}
+.pastille .grille{stroke:var(--champ); stroke-opacity:.3; stroke-width:3; stroke-linecap:round; fill:none}
+.pastille .trajet{stroke:var(--champ); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; fill:none}
+.pastille .bille{fill:var(--champ)}
+
+.oeil{font-size:.6875rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:10px}
+.source{font-size:.75rem; color:var(--champ-clair); margin-top:10px; max-width:62ch}
+.source a{color:inherit}
+
+/* 1. le prix, puis trois chiffres */
+.heros{background:var(--champ); color:var(--blanc); padding:clamp(40px,6vw,80px) 0 clamp(40px,5vw,64px)}
+.titre{
+  font-weight:900; text-transform:uppercase; letter-spacing:-.045em;
+  font-size:clamp(2.6rem,7.4vw,6.4rem); line-height:.9; max-width:17ch;
+}
+.titre-chiffre{display:block; color:var(--champ-clair)}
+.chapeau{font-size:clamp(1.05rem,1.6vw,1.3rem); margin-top:24px}
+.chiffres{list-style:none; display:grid; gap:28px; margin-top:clamp(36px,5vw,64px)}
+.chiffre{border-top:1px solid rgba(255,255,255,.55); padding-top:18px}
+.montant{font-weight:900; font-size:clamp(3rem,6vw,4.6rem); line-height:1; letter-spacing:-.04em; margin-bottom:12px}
+.chiffre-mot{font-weight:600; max-width:44ch}
+.avertissement{font-weight:600; font-size:.875rem; margin-top:32px}
+
+/* 2. la Région, le formulaire, les auto-écoles */
+.suite{background:var(--bande); padding:clamp(48px,7vw,96px) 0}
+.suite-grille{display:grid; gap:40px; align-items:start}
+.badge{
+  display:inline-block; background:var(--blanc); border-radius:999px; padding:5px 10px;
+  font-size:.6875rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; margin-bottom:14px;
+}
+.oeil-bleu{color:var(--champ)}
+.h2{font-weight:900; text-transform:uppercase; letter-spacing:-.04em; line-height:.95; font-size:clamp(2rem,4.4vw,3.6rem); max-width:14ch}
+.region-mot{color:var(--gris); margin-top:18px; max-width:46ch}
+.region-appel{font-weight:700; font-size:1.2rem; margin-top:20px; max-width:40ch}
+.avertissement-petit{font-size:.8125rem; font-weight:600; margin-top:16px}
+.source-sombre{color:var(--gris); margin-top:2px}
+.ecoles{margin-top:8px}
+.ecoles-mot{font-weight:700; font-size:1.1rem; max-width:44ch}
+
+.carte{background:var(--blanc); border-radius:16px; padding:clamp(20px,2.4vw,28px); display:grid; gap:10px}
+.carte-titre{font-weight:900; text-transform:uppercase; letter-spacing:-.04em; font-size:clamp(1.4rem,2.2vw,1.75rem); line-height:1}
+.carte-mot{font-size:.8125rem; color:var(--gris); margin-bottom:10px}
+.etiquette{font-size:.6875rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-top:6px}
+.champ{
+  font:inherit; font-size:1rem; min-height:48px; padding:0 14px; width:100%;
+  border:1px solid var(--trait); border-radius:10px; background:var(--blanc); color:var(--encre);
+}
+.champ::placeholder{color:var(--gris)}
+.champ:user-invalid{border-color:#C0262D}
+.profil{border:0; display:grid; gap:10px}
+.profil-choix{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.option{
+  display:flex; align-items:center; gap:10px; min-height:48px; padding:0 14px; cursor:pointer;
+  border:1px solid var(--trait); border-radius:10px; font-weight:600; font-size:.9375rem;
+}
+.option:has(input:checked){border:2px solid var(--champ); background:#F4F4FF}
+.option input,.accord input{width:20px; height:20px; accent-color:var(--champ); flex:0 0 auto}
+.accord{display:flex; gap:12px; align-items:flex-start; font-size:.875rem; margin-top:10px; cursor:pointer}
+.accord a{display:inline-block; color:var(--champ); font-weight:600; margin-top:2px}
+.piege{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+.action{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; margin-top:12px;
+  font:inherit; font-weight:700; font-size:1rem; color:var(--blanc); background:var(--champ);
+  border:0; border-radius:999px; cursor:pointer;
+}
+.action:hover{background:#1514C9}
+
+/* pied */
+.pied{background:var(--papier); padding:32px 0 20px; font-size:.875rem}
+.pied-haut{display:grid; gap:16px; padding-bottom:20px; border-bottom:1px solid var(--trait)}
+.pied-haut a{display:inline-flex; align-items:center; min-height:44px; text-decoration:none}
+.pied-haut a:hover{text-decoration:underline}
+.pied-marque{font-weight:800; font-size:1.15rem; letter-spacing:-.04em; margin-bottom:6px}
+.pied-promesse,.pied-mot{color:var(--gris)}
+.pied-mot{font-size:.8125rem; padding-top:16px}
+
+/* page de texte (mentions légales, merci) */
+.texte{max-width:72ch; padding-top:48px; padding-bottom:64px}
+.texte h1{font-weight:900; text-transform:uppercase; letter-spacing:-.04em; font-size:clamp(1.8rem,4vw,2.6rem); line-height:1; margin-bottom:24px}
+.texte h2{font-size:1.15rem; font-weight:800; margin:32px 0 8px}
+.texte p,.texte li{margin-bottom:10px}
+.texte ul{padding-left:20px}
+.texte .champ-lien{color:var(--champ); font-weight:600}
+
+@media (min-width:860px){
+  .chiffres{grid-template-columns:repeat(3,minmax(0,1fr)); gap:32px}
+  .suite-grille{grid-template-columns:minmax(0,7fr) minmax(0,5fr); column-gap:64px; row-gap:48px}
+  .region{grid-row:1}
+  .carte{grid-column:2; grid-row:1 / span 2}
+  .ecoles{grid-column:1; grid-row:2; margin-top:0}
+  .pied-haut{grid-template-columns:5fr 7fr; align-items:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
