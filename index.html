@@ -157,15 +157,22 @@
 <!-- Réglages d'affichage : une pastille qui suit la lecture (son anneau se remplit au défilement).
      Les cases marchent sans JavaScript (CSS :has) ; motion.js ne fait que s'en souvenir. -->
 <details class="reglages">
-  <summary aria-label="Réglages d'affichage et d'accessibilité">
-    <svg class="anneau" viewBox="0 0 56 56" aria-hidden="true"><circle class="anneau-fond" cx="28" cy="28" r="25"/><circle class="anneau-avance" cx="28" cy="28" r="25" pathLength="100"/></svg>
-    <span class="reglages-icone" aria-hidden="true">Aa</span>
+  <summary aria-label="Accessibilité : réglages d'affichage">
+    <svg class="anneau" viewBox="0 0 76 76" aria-hidden="true"><circle class="anneau-fond" cx="38" cy="38" r="35"/><circle class="anneau-avance" cx="38" cy="38" r="35" pathLength="100"/></svg>
+    <svg class="acces" viewBox="0 0 76 76" aria-hidden="true">
+      <defs><path id="acces-cercle" d="M38,38 m-24,0 a24,24 0 1,1 48,0 a24,24 0 1,1 -48,0"/></defs>
+      <text class="acces-texte"><textPath href="#acces-cercle" textLength="149" lengthAdjust="spacingAndGlyphs">ACCESSIBILITÉ · ACCESSIBILITÉ ·</textPath></text>
+      <g class="acces-picto">
+        <circle cx="38" cy="29.5" r="2.6"/>
+        <path d="M30 34.5h16M38 34.5v6.5M38 41l-4.5 8M38 41l4.5 8"/>
+      </g>
+    </svg>
   </summary>
   <fieldset class="reglages-panneau">
     <legend>Affichage</legend>
     <label><input type="checkbox" id="pause" data-reglage="pause"> Arrêter les animations</label>
     <label><input type="checkbox" id="grand" data-reglage="grand"> Texte plus grand</label>
-    <label><input type="checkbox" id="lecture" data-reglage="lecture"> Lecture facilitée (dyslexie)</label>
+    <label><input type="checkbox" id="lecture" data-reglage="lecture"> Lecture facilitée</label>
     <label><input type="checkbox" id="contraste" data-reglage="contraste"> Contraste renforcé</label>
     <label><input type="checkbox" id="liens" data-reglage="liens"> Souligner les liens</label>
   </fieldset>

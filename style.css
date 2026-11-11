@@ -276,15 +276,14 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 /* ───────────── Réglages d'affichage : la pastille ───────────── */
 .reglages{position:fixed; right:16px; bottom:16px; z-index:20}
 .reglages summary{
-  list-style:none; cursor:pointer; position:relative; width:56px; height:56px; border-radius:50%;
+  list-style:none; cursor:pointer; position:relative; width:76px; height:76px; border-radius:50%;
   background:var(--blanc); color:var(--champ); display:grid; place-items:center;
   box-shadow:0 8px 28px rgba(14,15,20,.22);
 }
 .reglages summary::-webkit-details-marker{display:none}
 .reglages summary:focus-visible{outline:3px solid var(--encre); outline-offset:3px}
-.reglages-icone{font-weight:900; font-size:1.05rem; letter-spacing:-.04em}
-.anneau{position:absolute; inset:0; width:56px; height:56px; transform:rotate(-90deg)}
-.anneau circle{fill:none; stroke-width:4}
+.anneau{position:absolute; inset:0; width:76px; height:76px; transform:rotate(-90deg)}
+.anneau circle{fill:none; stroke-width:3.5}
 .anneau-fond{stroke:var(--bande)}
 .anneau-avance{stroke:var(--champ); stroke-dasharray:100; stroke-dashoffset:100; stroke-linecap:round}
 /* l'anneau suit l'avance de la lecture (navigateurs qui le savent ; ailleurs il reste vide) */
@@ -293,7 +292,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
   @keyframes avancer{to{stroke-dashoffset:0}}
 }
 .reglages-panneau{
-  position:absolute; right:0; bottom:68px; width:min(300px,calc(100vw - 32px));
+  position:absolute; right:0; bottom:88px; width:min(300px,calc(100vw - 32px));
   background:var(--blanc); color:var(--encre); border:0; border-radius:16px; padding:16px 18px 10px;
   box-shadow:0 16px 44px rgba(14,15,20,.25);
 }
@@ -318,3 +317,11 @@ html:has(#contraste:checked){--champ-clair:#FFFFFF; --gris:#0E0F14; --trait:#0E0
 html:has(#contraste:checked) .source,html:has(#contraste:checked) .chiffre-cond{color:#FFFFFF}
 /* 5. souligner les liens */
 html:has(#liens:checked) a{text-decoration:underline!important; text-underline-offset:3px}
+
+/* le pictogramme accessibilité, et « ACCESSIBILITÉ » qui tourne autour comme le sceau */
+.acces{position:absolute; inset:0; width:76px; height:76px}
+.acces-texte{font-weight:800; font-size:6.4px; letter-spacing:.04em; fill:var(--champ); transform-origin:38px 38px; animation:tourner 14s linear infinite}
+.acces-picto circle{fill:var(--champ)}
+.acces-picto path{stroke:var(--champ); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; fill:none}
+html{scroll-padding-bottom:6rem}
+html:has(#contraste:checked) .note{opacity:1}

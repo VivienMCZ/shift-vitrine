@@ -39,6 +39,8 @@ document.querySelectorAll('.monte, .titre-chiffre').forEach((el) => vus.observe(
       if (e.key === 'Escape' && reglages.open) { reglages.open = false; reglages.querySelector('summary').focus(); }
     });
     document.addEventListener('click', (e) => { if (reglages.open && !reglages.contains(e.target)) reglages.open = false; });
+    // au clavier : le panneau se ferme dès que le focus en sort, pour ne jamais cacher l'élément focalisé (WCAG 2.4.11)
+    reglages.addEventListener('focusout', (e) => { if (!reglages.contains(e.relatedTarget)) reglages.open = false; });
   }
 
   // Se souvenir des réglages d'affichage sur cet appareil (rien n'est envoyé).
