@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Pas d'en-tête HTTP possible sur GitHub Pages : la politique de sécurité passe par cette balise.
      Aucun script, aucun style inline, aucun tiers chargé. Seul l'envoi du formulaire part vers Brevo. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; form-action 'self' https://*.sibforms.com https://vivienmcz.github.io; base-uri 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; form-action 'self' https://*.sibforms.com https://vivienmcz.github.io; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <title>Shift · Les aides pour ton permis</title>
 <meta name="description" content="Le forfait 20 h + code du permis B coûte en moyenne 1 426 €. Des aides peuvent en payer une partie. Rejoins la liste : on te prévient dès que la nouvelle aide de la Région Île-de-France ouvre.">
 <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="motion.js" defer></script>
 </head>
 <body>
 <!--
@@ -35,26 +36,27 @@
   <section class="heros" aria-labelledby="titre">
     <div class="cadre">
       <p class="oeil">Le permis B, ce que ça coûte</p>
-      <h1 id="titre" class="titre">Ton forfait permis coûte en moyenne <span class="titre-chiffre">1&nbsp;426&nbsp;€.</span></h1>
-      <p class="chapeau">Forfait 20&nbsp;h + code. Les heures en plus se paient à part (56&nbsp;€ en moyenne). Des aides peuvent en payer une partie.</p>
-      <p class="source">Forfait 20&nbsp;h&nbsp;: moyenne de 999 formules, réseau Club Rousseau 2026 · code&nbsp;: 30&nbsp;€, tarif fixé par l'État · confiance moyenne · vérifié le 14/10/2026</p>
+      <h1 id="titre" class="titre"><span class="ligne"><i>Ton forfait permis</i></span> <span class="ligne"><i>coûte en moyenne</i></span> <span class="ligne titre-chiffre"><i><span data-compte="1426">1&nbsp;426</span>&nbsp;€.</i></span></h1>
+      <p class="chapeau entre" data-d="1">Forfait 20&nbsp;h + code. Les heures en plus se paient à part (56&nbsp;€ en moyenne). Des aides peuvent en payer une partie.</p>
+      <p class="source entre" data-d="2">Forfait 20&nbsp;h&nbsp;: moyenne de 999 formules, réseau Club Rousseau 2026 · code&nbsp;: 30&nbsp;€, tarif fixé par l'État · confiance moyenne · vérifié le 14/10/2026</p>
+      <a class="appel entre" data-d="3" href="#liste"><span>Rejoindre la liste d'attente</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 3v12M4 10l5 5 5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
       <ul class="chiffres">
-        <li class="chiffre">
+        <li class="chiffre monte">
           <p class="oeil">Aide · CPF</p>
-          <p class="montant">900&nbsp;€</p>
+          <p class="montant"><span data-compte="900">900</span>&nbsp;€</p>
           <p class="chiffre-mot">Ton CPF pourrait payer jusqu'à 900&nbsp;€, selon ton solde, si tu es inscrit à France Travail ou si un employeur ou un organisme met au moins 100&nbsp;€ avec toi.</p>
           <p class="source"><a href="https://www.service-public.gouv.fr/particuliers/actualites/A17164" rel="noopener">service-public.gouv.fr</a> · vérifié le 08/10/2026</p>
         </li>
-        <li class="chiffre">
+        <li class="chiffre monte">
           <p class="oeil">Aide · une commune</p>
-          <p class="montant">500&nbsp;€</p>
+          <p class="montant"><span data-compte="500">500</span>&nbsp;€</p>
           <p class="chiffre-mot">Certaines communes des Yvelines aident aussi. Si tu habites Voisins-le-Bretonneux et as entre 18 et 25&nbsp;ans&nbsp;: 500&nbsp;€, hors conduite accompagnée.</p>
           <p class="source"><a href="https://www.voisins78.fr/voisins/actualites/2672-bourse-permis-bafa.html" rel="noopener">voisins78.fr</a> · vérifié le 08/10/2026</p>
         </li>
-        <li class="chiffre">
+        <li class="chiffre monte">
           <p class="oeil">Prêt · Permis à 1&nbsp;€/jour</p>
-          <p class="montant">1&nbsp;200&nbsp;€</p>
+          <p class="montant"><span data-compte="1200">1&nbsp;200</span>&nbsp;€</p>
           <p class="chiffre-mot">Permis à 1&nbsp;€/jour&nbsp;: jusqu'à 1&nbsp;200&nbsp;€ prêtés aux 15‑25&nbsp;ans, avec une auto-école partenaire. C'est un prêt, pas une aide&nbsp;: il étale le paiement.</p>
           <p class="source"><a href="https://www.securite-routiere.gouv.fr/passer-son-permis-de-conduire/financement-du-permis-de-conduire/permis-1-eu-par-jour/conditions-deligibilite" rel="noopener">securite-routiere.gouv.fr</a> · vérifié le 08/10/2026</p>
         </li>
@@ -63,10 +65,22 @@
     </div>
   </section>
 
+  <!-- Deux bandeaux croisés, comme une affiche de campagne. Décoratifs : tout ce qu'ils disent est déjà écrit sur la page. -->
+  <div class="ruban" aria-hidden="true">
+    <div class="ruban-ligne ruban-a"><div><span>Jusqu'à 900&nbsp;€ avec le CPF</span><span>500&nbsp;€ à Voisins-le-Bretonneux</span><span>Une nouvelle aide de la Région arrive</span><span>Gratuit, sans compte</span><span>Jusqu'à 900&nbsp;€ avec le CPF</span><span>500&nbsp;€ à Voisins-le-Bretonneux</span><span>Une nouvelle aide de la Région arrive</span><span>Gratuit, sans compte</span></div></div>
+    <div class="ruban-ligne ruban-b"><div><span>Ton permis</span><span>Tes aides</span><span>Ton auto-école</span><span>Ton permis</span><span>Tes aides</span><span>Ton auto-école</span><span>Ton permis</span><span>Tes aides</span><span>Ton auto-école</span><span>Ton permis</span><span>Tes aides</span><span>Ton auto-école</span></div></div>
+    <svg class="sceau" viewBox="0 0 200 200">
+      <defs><path id="cercle" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+      <circle cx="100" cy="100" r="98"/>
+      <text><textPath href="#cercle">BIENTÔT · GRATUIT · SANS COMPTE · BIENTÔT · GRATUIT · SANS COMPTE ·</textPath></text>
+      <path class="sceau-fleche" d="M100 72v52M80 104l20 20 20-20"/>
+    </svg>
+  </div>
+
   <section class="suite" aria-labelledby="region">
     <div class="cadre suite-grille">
-      <div class="region">
-        <p class="badge">Annoncée, pas encore ouverte</p>
+      <div class="region monte">
+        <p class="badge"><span class="pouls" aria-hidden="true"></span>Annoncée, pas encore ouverte</p>
         <p class="oeil oeil-bleu">Une nouvelle aide arrive</p>
         <h2 id="region" class="h2">La Région Île‑de‑France a annoncé 500&nbsp;€.</h2>
         <p class="region-mot">1&nbsp;000&nbsp;€ pour les jeunes en situation de handicap. Ni la date ni les conditions ne sont encore publiées.</p>
@@ -79,7 +93,7 @@
       <!-- Formulaire Brevo envoyé tel quel, sans leur script : aucun traceur sur la page.
            L'adresse d'envoi (action) vient du formulaire créé dans le compte Brevo de Vivien,
            double confirmation activée. Tant qu'elle n'est pas posée, la page n'est pas publiée. -->
-      <form class="carte" id="liste" method="post" action="https://BREVO_FORM_URL.sibforms.com/serve/A_REMPLACER" aria-labelledby="liste-titre">
+      <form class="carte monte" data-d="1" id="liste" method="post" action="https://BREVO_FORM_URL.sibforms.com/serve/A_REMPLACER" aria-labelledby="liste-titre">
         <h2 id="liste-titre" class="carte-titre">Rejoins la liste d'attente</h2>
         <p class="carte-mot">Un e-mail quand l'aide de la Région ouvre, puis pour chaque nouvelle aide au permis.</p>
 
@@ -109,7 +123,7 @@
         </button>
       </form>
 
-      <div class="ecoles">
+      <div class="ecoles monte">
         <p class="oeil oeil-bleu">Pour les auto-écoles</p>
         <p class="ecoles-mot">Gratuit pour les auto-écoles. Être partenaire ne change pas la place dans la liste&nbsp;: le classement ne s'achète pas.</p>
       </div>
