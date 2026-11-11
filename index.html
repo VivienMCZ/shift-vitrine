@@ -15,6 +15,7 @@
 <script src="motion.js"></script>
 </head>
 <body>
+<a class="evitement" href="#contenu">Aller au contenu</a>
 <!--
   Chiffres recopiés du calculateur (dépôt shift : backend/apps/aides/data/aides.yaml et
   cout-reference.yaml). Vérifiés le 08/10/2026 (aides) et le 14/10/2026 (coût).
@@ -32,7 +33,7 @@
   </a>
 </header>
 
-<main>
+<main id="contenu" tabindex="-1">
   <section class="heros" aria-labelledby="titre">
     <div class="cadre">
       <p class="oeil">Le permis B, ce que ça coûte</p>
@@ -102,6 +103,7 @@
       <form class="carte monte" data-d="1" id="liste" method="post" action="https://BREVO_FORM_URL.sibforms.com/serve/A_REMPLACER" aria-labelledby="liste-titre">
         <h2 id="liste-titre" class="carte-titre">Rejoins la liste d'attente</h2>
         <p class="carte-mot">Un e-mail quand l'aide de la Région ouvre, puis pour chaque nouvelle aide au permis.</p>
+        <p class="carte-oblig">Tous les champs sont obligatoires.</p>
 
         <label class="etiquette" for="email">Adresse e-mail</label>
         <input class="champ" id="email" name="EMAIL" type="email" autocomplete="email" inputmode="email" placeholder="nom@exemple.fr" required>
