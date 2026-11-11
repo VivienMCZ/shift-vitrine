@@ -216,18 +216,47 @@ body:has(#pause:checked) *,body:has(#pause:checked) *::before,body:has(#pause:ch
 }
 
 /* page de vente : chiffres courts, notes vers les sources */
-.note{font-size:.5em; font-weight:700; vertical-align:super; line-height:0; margin-left:.08em; text-decoration:none; color:inherit; opacity:.85; display:inline-block; min-width:24px; min-height:24px; line-height:24px; text-align:center}
+.note{font-size:.5em; font-weight:700; vertical-align:super; line-height:0; margin-left:.06em; text-decoration:none; color:inherit; opacity:.85; position:relative; white-space:nowrap}
+/* zone de toucher de 24 px autour du petit numéro, sans pousser le texte */
+.note::before{content:""; position:absolute; inset:-12px -8px}
 .titre .note,.montant .note{font-size:.32em}
 .note:hover{text-decoration:underline}
 .chiffre-mot{font-weight:800; font-size:clamp(1.15rem,1.8vw,1.45rem); line-height:1.2; max-width:22ch}
 .chiffre-cond{font-size:.875rem; color:var(--champ-clair); margin-top:6px}
 .avertissement a{color:inherit; text-underline-offset:3px}
 .promesse{background:var(--bande); padding:clamp(40px,6vw,72px) 0 0}
-.promesse-liste{list-style:none; display:grid; gap:12px; margin-top:6px}
-.promesse-liste li{font-size:clamp(1.5rem,3.6vw,2.6rem); font-weight:500; letter-spacing:-.03em; line-height:1.1}
-.promesse-liste b{font-weight:900; color:var(--champ)}
 .region-appel{font-size:clamp(1.15rem,1.8vw,1.4rem)}
 .notes{padding-left:22px}
 .notes li{margin-bottom:14px}
 .notes li:target{background:var(--bande); outline:6px solid var(--bande)}
-@media (min-width:860px){.promesse-liste{grid-template-columns:repeat(3,1fr); gap:32px}}
+
+
+/* comment ça marche : trois étapes courtes */
+.promesse-titre{margin-bottom:28px}
+.etapes{list-style:none; display:grid; gap:16px}
+.etape{background:var(--blanc); border-radius:16px; padding:22px 22px 24px}
+.etape-n{display:block; font-weight:900; font-size:2.6rem; line-height:1; color:var(--champ); letter-spacing:-.04em; margin-bottom:12px}
+.etape h3{font-weight:900; font-size:1.3rem; letter-spacing:-.02em; margin-bottom:6px}
+.etape p{color:var(--gris); max-width:40ch}
+
+/* questions rapides : ouvertes au clic, sans script */
+.faq{background:var(--bande); padding:clamp(56px,7vw,96px) 0}
+.faq-grille{display:grid; gap:24px}
+.faq details{border-top:1px solid var(--trait); padding:4px 0}
+.faq details:last-child{border-bottom:1px solid var(--trait)}
+.faq summary{cursor:pointer; list-style:none; font-weight:800; font-size:1.15rem; min-height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; font-size:1.6rem; font-weight:500; color:var(--champ); transition:transform .3s var(--courbe)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--gris); padding:0 0 18px; max-width:60ch}
+
+/* dernier appel, plein bleu */
+.final{background:var(--champ); color:var(--blanc); padding:clamp(56px,8vw,112px) 0; text-align:center}
+.final-titre{font-weight:900; text-transform:uppercase; letter-spacing:-.04em; line-height:.95; font-size:clamp(2rem,5vw,4.2rem); max-width:18ch; margin:0 auto}
+.final .appel{margin-top:32px}
+
+@media (min-width:860px){
+  .etapes{grid-template-columns:repeat(3,1fr); gap:24px}
+  .faq-grille{grid-template-columns:5fr 7fr; gap:64px}
+}
+.insec{white-space:nowrap}
