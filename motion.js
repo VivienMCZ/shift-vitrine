@@ -1,8 +1,11 @@
 // Animations de la vitrine. Sans ce fichier, la page reste complète et lisible :
 // les chiffres sont déjà écrits dans le HTML, ce script ne fait que les faire compter.
+// Les lecteurs d'écran lisent la copie fixe (.lu) ; celle qui compte est aria-hidden.
 'use strict';
 const calme = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.documentElement.classList.add('anime');
+
+document.addEventListener('DOMContentLoaded', () => {
 
 const nombre = new Intl.NumberFormat('fr-FR');
 function compter(el) {
@@ -28,3 +31,4 @@ const vus = new IntersectionObserver((entrees) => {
 }, { threshold: 0.2 });
 
 document.querySelectorAll('.monte, .titre-chiffre').forEach((el) => vus.observe(el));
+});

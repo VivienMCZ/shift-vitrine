@@ -130,7 +130,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 :root{--courbe:cubic-bezier(.16,1,.3,1)}
 
 /* 1. le titre monte ligne par ligne, avec une légère bascule */
-.ligne{display:block; overflow:hidden; padding-top:.14em; margin-top:-.14em}
+.ligne{display:block; overflow:hidden; padding:.14em 0 .12em; margin:-.14em 0 -.12em}
 .ligne i{display:block; font-style:normal; transform:translateY(105%) rotate(2.5deg); animation:monter 1.1s var(--courbe) forwards}
 .ligne:nth-child(1) i{animation-delay:.05s}
 .ligne:nth-child(2) i{animation-delay:.17s}
@@ -141,7 +141,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 /* le titre s'éloigne doucement quand on défile (navigateurs qui savent le faire) */
 @supports (animation-timeline:scroll()){
   .titre{animation:eloigner linear both; animation-timeline:scroll(root); animation-range:0 70vh}
-  @keyframes eloigner{to{transform:translateY(-6vh) scale(.94); opacity:.35}}
+  @keyframes eloigner{to{transform:translateY(-6vh) scale(.94)}}
 }
 
 /* 2. le reste du héros entre après le titre */
@@ -155,7 +155,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 .appel{
   display:inline-flex; align-items:center; gap:10px; min-height:52px; margin-top:24px; padding:0 26px;
   background:var(--blanc); color:var(--champ); border-radius:999px; font-weight:800; text-decoration:none;
-  box-shadow:0 0 0 0 rgba(255,255,255,.5); transition:transform .25s var(--courbe);
+  transition:transform .25s var(--courbe);
 }
 .appel:hover{transform:translateY(-2px)}
 .appel svg{animation:descendre 1.6s ease-in-out infinite}
@@ -198,6 +198,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 /* le bouton du formulaire : la flèche avance au survol */
 .action svg{transition:transform .3s var(--courbe)}
 .action:hover svg{transform:translateX(4px)}
+
+/* texte lu par les lecteurs d'écran, invisible à l'écran */
+.lu{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+
+/* la case « pause » : arrête tout ce qui tourne en boucle (WCAG 2.2.2) */
+.pause{background:var(--bande); padding:16px var(--marge) 0; text-align:right; font-size:.8125rem}
+.pause label{display:inline-flex; align-items:center; min-height:44px; cursor:pointer; text-decoration:underline; text-underline-offset:3px}
+.pause input{width:18px; height:18px; margin-right:8px; vertical-align:middle; accent-color:var(--champ)}
+body:has(#pause:checked) *,body:has(#pause:checked) *::before,body:has(#pause:checked) *::after{animation-play-state:paused!important}
 
 /* moins d'animations demandées : tout est posé, rien ne bouge */
 @media (prefers-reduced-motion:reduce){
