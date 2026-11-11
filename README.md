@@ -1,13 +1,14 @@
 # shift-vitrine
 
 Vitrine publique de Shift et liste d'attente (carte Trello US 10). Pages statiques servies par
-GitHub Pages : aucun serveur, aucun script, aucun cookie, aucun secret.
+GitHub Pages : aucun serveur, aucun cookie, aucun secret. Un seul script, `motion.js` (1 Ko), qui ne fait qu'animer : sans lui la page reste complète.
 
 | Fichier | Rôle |
 |---|---|
 | `index.html` | La vitrine : coût moyen du permis, trois montants sourcés, la nouvelle aide de la Région, le formulaire |
 | `mentions-legales.html` | Éditeur, hébergeur, ce que devient l'adresse e-mail, droits |
 | `merci.html` | Page « Vérifie ta boîte », vers laquelle Brevo renvoie après l'envoi |
+| `motion.js` | Fait compter les chiffres et monter les blocs au défilement, ferme le panneau des réglages avec Échap, et se souvient des réglages d'affichage sur l'appareil (`localStorage`, rien n'est envoyé) |
 | `style.css`, `fonts/` | Styles et police Archivo, hébergée ici (jamais Google Fonts) |
 
 Écran Figma de référence : fichier `azam20tqlvBolPypsIG8IE`, cadres `363:2272` (1440) et `365:2264` (390).

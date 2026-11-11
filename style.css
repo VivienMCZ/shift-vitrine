@@ -123,4 +123,221 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
   .ecoles{grid-column:1; grid-row:2; margin-top:0}
   .pied-haut{grid-template-columns:5fr 7fr; align-items:center}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+
+/* ───────────── Mouvement : une affiche de campagne qui s'anime ─────────────
+   CSS d'abord ; motion.js ne fait que poser .vu au défilement et faire compter
+   les chiffres. Sans lui, tout est visible et immobile. */
+:root{--courbe:cubic-bezier(.16,1,.3,1)}
+
+/* 1. le titre monte ligne par ligne, avec une légère bascule */
+.ligne{display:block; overflow:hidden; padding:.14em 0 .12em; margin:-.14em 0 -.12em}
+.ligne i{display:block; font-style:normal; transform:translateY(105%) rotate(2.5deg); animation:monter 1.1s var(--courbe) forwards}
+.ligne:nth-child(1) i{animation-delay:.05s}
+.ligne:nth-child(2) i{animation-delay:.17s}
+.ligne:nth-child(3) i{animation-delay:.29s}
+@keyframes monter{to{transform:none}}
+.titre-chiffre i{font-variant-numeric:tabular-nums}
+
+/* le titre s'éloigne doucement quand on défile (navigateurs qui savent le faire) */
+@supports (animation-timeline:scroll()){
+  .titre{animation:eloigner linear both; animation-timeline:scroll(root); animation-range:0 70vh}
+  @keyframes eloigner{to{transform:translateY(-6vh) scale(.94)}}
+}
+
+/* 2. le reste du héros entre après le titre */
+.entre{opacity:0; transform:translateY(16px); animation:apparaitre .9s var(--courbe) forwards}
+.entre[data-d="1"]{animation-delay:.55s}
+.entre[data-d="2"]{animation-delay:.8s}
+.entre[data-d="3"]{animation-delay:.95s}
+@keyframes apparaitre{to{opacity:1; transform:none}}
+
+/* l'appel du héros : la flèche descend vers le formulaire */
+.appel{
+  display:inline-flex; align-items:center; gap:10px; min-height:52px; margin-top:24px; padding:0 26px;
+  background:var(--blanc); color:var(--champ); border-radius:999px; font-weight:800; text-decoration:none;
+  transition:transform .25s var(--courbe);
+}
+.appel:hover{transform:translateY(-2px)}
+.appel svg{animation:descendre 1.6s ease-in-out infinite}
+@keyframes descendre{0%,100%{transform:none}50%{transform:translateY(4px)}}
+.appel:focus-visible{outline-color:var(--blanc)}
+
+/* 3. les blocs montent à leur arrivée à l'écran */
+.anime .monte{opacity:0; transform:translateY(40px)}
+.anime .monte.vu{opacity:1; transform:none; transition:opacity .9s var(--courbe), transform 1s var(--courbe)}
+.anime .chiffres .monte:nth-child(2).vu{transition-delay:.12s}
+.anime .chiffres .monte:nth-child(3).vu{transition-delay:.24s}
+.anime .monte[data-d="1"].vu{transition-delay:.15s}
+.montant{font-variant-numeric:tabular-nums}
+/* le filet du haut de chaque chiffre se trace de gauche à droite */
+.anime .chiffre{border-top-color:transparent; position:relative}
+.anime .chiffre::before{content:""; position:absolute; left:0; top:-1px; height:1px; width:100%; background:rgba(255,255,255,.55); transform:scaleX(0); transform-origin:left}
+.anime .chiffre.vu::before{transform:none; transition:transform 1.2s var(--courbe) .2s}
+
+/* 4. deux rubans croisés entre les deux parties, et un sceau qui tourne */
+.ruban{position:relative; background:var(--bande); padding:clamp(28px,4vw,48px) 0 0; overflow:hidden}
+.ruban-ligne{overflow:hidden; white-space:nowrap; padding:14px 0; font-weight:900; text-transform:uppercase; letter-spacing:-.02em}
+.ruban-ligne div{display:inline-flex; gap:40px; padding-right:40px; animation:defiler 30s linear infinite}
+.ruban-ligne span::after{content:"✦"; margin-left:40px; font-size:.7em; vertical-align:.15em}
+.ruban-a{background:var(--champ); color:var(--blanc); font-size:clamp(1.1rem,2.4vw,1.8rem); transform:rotate(-2deg); margin:0 -20px}
+.ruban-b{background:var(--blanc); color:var(--champ); font-size:clamp(1.6rem,4vw,3rem); transform:rotate(1.5deg); margin:10px -20px 0; border-block:2px solid var(--champ)}
+.ruban-b div{animation-direction:reverse; animation-duration:38s}
+@keyframes defiler{to{transform:translateX(-50%)}}
+.sceau{position:absolute; right:clamp(16px,6vw,96px); top:6px; width:clamp(104px,13vw,168px); height:auto; z-index:2; animation:tourner 18s linear infinite}
+.sceau circle{fill:var(--blanc); stroke:var(--champ); stroke-width:3}
+.sceau text{font-weight:800; font-size:15.5px; letter-spacing:.12em; fill:var(--champ)}
+.sceau-fleche{stroke:var(--champ); stroke-width:7; stroke-linecap:round; stroke-linejoin:round; fill:none; transform-origin:100px 100px; animation:tourner 18s linear infinite reverse}
+@keyframes tourner{to{transform:rotate(360deg)}}
+
+/* 5. le badge « annoncée » bat comme un signal */
+.badge{display:inline-flex; align-items:center; gap:8px}
+.pouls{width:8px; height:8px; border-radius:50%; background:var(--champ); position:relative}
+.pouls::after{content:""; position:absolute; inset:0; border-radius:50%; background:var(--champ); animation:battre 1.8s ease-out infinite}
+@keyframes battre{to{transform:scale(3.2); opacity:0}}
+
+/* le bouton du formulaire : la flèche avance au survol */
+.action svg{transition:transform .3s var(--courbe)}
+.action:hover svg{transform:translateX(4px)}
+
+/* texte lu par les lecteurs d'écran, invisible à l'écran */
+.lu{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+
+/* moins d'animations demandées : tout est posé, rien ne bouge */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  .ligne i,.entre,.anime .monte{opacity:1!important; transform:none!important}
+  .anime .chiffre::before{transform:none}
+}
+
+/* page de vente : chiffres courts, notes vers les sources */
+.note{font-size:.5em; font-weight:700; vertical-align:super; line-height:0; margin-left:.06em; text-decoration:none; color:inherit; opacity:.85; position:relative; white-space:nowrap}
+/* zone de toucher de 24 px autour du petit numéro, sans pousser le texte */
+.note::before{content:""; position:absolute; inset:-12px -8px}
+.titre .note,.montant .note{font-size:.32em}
+.note:hover{text-decoration:underline}
+.chiffre-mot{font-weight:800; font-size:clamp(1.15rem,1.8vw,1.45rem); line-height:1.2; max-width:22ch}
+.chiffre-cond{font-size:.875rem; color:var(--champ-clair); margin-top:6px}
+.avertissement a{color:inherit; text-underline-offset:3px}
+.promesse{background:var(--bande); padding:clamp(40px,6vw,72px) 0 0}
+.region-appel{font-size:clamp(1.15rem,1.8vw,1.4rem)}
+.notes{padding-left:22px}
+.notes li{margin-bottom:14px}
+.notes li:target{background:var(--bande); outline:6px solid var(--bande)}
+
+
+/* comment ça marche : trois étapes courtes */
+.promesse-titre{margin-bottom:28px}
+.etapes{list-style:none; display:grid; gap:16px}
+.etape{background:var(--blanc); border-radius:16px; padding:22px 22px 24px}
+.etape-n{display:block; font-weight:900; font-size:2.6rem; line-height:1; color:var(--champ); letter-spacing:-.04em; margin-bottom:12px}
+.etape h3{font-weight:900; font-size:1.3rem; letter-spacing:-.02em; margin-bottom:6px}
+.etape p{color:var(--gris); max-width:40ch}
+
+/* questions rapides : ouvertes au clic, sans script */
+.faq{background:var(--bande); padding:clamp(56px,7vw,96px) 0}
+.faq-grille{display:grid; gap:24px}
+.faq details{border-top:1px solid var(--trait); padding:4px 0}
+.faq details:last-child{border-bottom:1px solid var(--trait)}
+.faq summary{cursor:pointer; list-style:none; font-weight:800; font-size:1.15rem; min-height:56px; display:flex; align-items:center; justify-content:space-between; gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; font-size:1.6rem; font-weight:500; color:var(--champ); transition:transform .3s var(--courbe)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--gris); padding:0 0 18px; max-width:60ch}
+
+/* dernier appel, plein bleu */
+.final{background:var(--champ); color:var(--blanc); padding:clamp(56px,8vw,112px) 0; text-align:center}
+.final-titre{font-weight:900; text-transform:uppercase; letter-spacing:-.04em; line-height:.95; font-size:clamp(2rem,5vw,4.2rem); max-width:18ch; margin:0 auto}
+.final .appel{margin-top:32px}
+
+@media (min-width:860px){
+  .etapes{grid-template-columns:repeat(3,1fr); gap:24px}
+  .faq-grille{grid-template-columns:5fr 7fr; gap:64px}
+}
+.insec{white-space:nowrap}
+
+/* le logo : la bille passe les rapports sur le trajet du S, comme dans le prototype */
+@keyframes passer-les-rapports{
+  0%,10%   {offset-distance:0%}
+  18%,28%  {offset-distance:33%}
+  36%,46%  {offset-distance:50%}
+  54%,64%  {offset-distance:83%}
+  72%,100% {offset-distance:100%}
+}
+.pastille .bille{
+  offset-path:path('M36 12H12V24H36V36H12');
+  offset-rotate:0deg;
+  animation:passer-les-rapports 8s var(--courbe) infinite;
+}
+/* à l'arrivée, le S se trace avant que la bille parte */
+.pastille .trajet{stroke-dasharray:96; stroke-dashoffset:96; animation:tracer 1.1s var(--courbe) .2s forwards}
+@keyframes tracer{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.pastille .trajet{stroke-dashoffset:0}}
+
+/* ───────────── Réglages d'affichage : la pastille ───────────── */
+.reglages{position:fixed; right:16px; bottom:16px; z-index:20}
+.reglages summary{
+  list-style:none; cursor:pointer; position:relative; width:76px; height:76px; border-radius:50%;
+  background:var(--blanc); color:var(--champ); display:grid; place-items:center;
+  box-shadow:0 8px 28px rgba(14,15,20,.22);
+}
+.reglages summary::-webkit-details-marker{display:none}
+.reglages summary:focus-visible{outline:3px solid var(--encre); outline-offset:3px}
+.anneau{position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg)}
+.anneau circle{fill:none; stroke-width:3.5}
+.anneau-fond{stroke:var(--bande)}
+.anneau-avance{stroke:var(--champ); stroke-dasharray:100; stroke-dashoffset:100; stroke-linecap:round}
+/* l'anneau suit l'avance de la lecture (navigateurs qui le savent ; ailleurs il reste vide) */
+@supports (animation-timeline:scroll()){
+  .anneau-avance{animation:avancer linear both; animation-timeline:scroll(root)}
+  @keyframes avancer{to{stroke-dashoffset:0}}
+}
+.reglages-panneau{
+  position:absolute; right:0; bottom:88px; width:min(300px,calc(100vw - 32px));
+  background:var(--blanc); color:var(--encre); border:0; border-radius:16px; padding:16px 18px 10px;
+  box-shadow:0 16px 44px rgba(14,15,20,.25);
+}
+.reglages-panneau legend{float:left; width:100%; font-weight:800; font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; color:var(--champ); margin-bottom:6px}
+.reglages-panneau label{display:flex; align-items:center; gap:10px; min-height:44px; font-weight:600; font-size:.95rem; cursor:pointer; clear:both}
+.reglages-panneau input{width:20px; height:20px; accent-color:var(--champ); flex:0 0 auto}
+
+/* 1. arrêter les animations */
+html:has(#pause:checked) *,html:has(#pause:checked) *::before,html:has(#pause:checked) *::after{animation-play-state:paused!important; transition:none!important}
+html:has(#pause:checked) .ligne i,html:has(#pause:checked) .entre,html:has(#pause:checked) .anime .monte{animation:none!important; opacity:1!important; transform:none!important}
+html:has(#pause:checked) .pastille .trajet{animation:none; stroke-dashoffset:0}
+/* l'anneau de lecture n'est pas une animation décorative : il continue */
+html:has(#pause:checked) .anneau-avance{animation-play-state:running!important}
+/* 2. texte plus grand */
+html:has(#grand:checked){font-size:125%}
+/* 3. lecture facilitée : police système sans empattement, espacements de WCAG 1.4.12 */
+html:has(#lecture:checked) body,html:has(#lecture:checked) .champ,html:has(#lecture:checked) .action{font-family:Verdana,Tahoma,'Segoe UI',system-ui,sans-serif}
+html:has(#lecture:checked) main p,html:has(#lecture:checked) main li,html:has(#lecture:checked) main summary,html:has(#lecture:checked) main label{letter-spacing:.12em; word-spacing:.16em; line-height:1.6}
+html:has(#lecture:checked) .titre,html:has(#lecture:checked) .h2,html:has(#lecture:checked) .final-titre,html:has(#lecture:checked) .carte-titre{text-transform:none; letter-spacing:0; line-height:1.15}
+/* 4. contraste renforcé */
+html:has(#contraste:checked){--champ-clair:#FFFFFF; --gris:#0E0F14; --trait:#0E0F14}
+html:has(#contraste:checked) .source,html:has(#contraste:checked) .chiffre-cond{color:#FFFFFF}
+/* 5. souligner les liens */
+html:has(#liens:checked) a{text-decoration:underline!important; text-underline-offset:3px}
+
+/* le pictogramme accessibilité, et « ACCESSIBILITÉ » qui tourne autour comme le sceau */
+.acces{position:absolute; inset:0; width:100%; height:100%}
+.acces-texte{font-weight:800; font-size:6.4px; letter-spacing:.04em; fill:var(--champ); transform-origin:38px 38px; animation:tourner 14s linear infinite}
+.acces-picto circle{fill:var(--champ)}
+.acces-picto path{stroke:var(--champ); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; fill:none}
+html{scroll-padding-bottom:6rem}
+html:has(#contraste:checked) .note{opacity:1}
+
+/* audit d'accessibilité du 11/11/2026 */
+/* lien d'évitement : visible dès qu'il reçoit le focus (RGAA 12.7) */
+.evitement{position:absolute; left:16px; top:-100px; z-index:30; background:var(--blanc); color:var(--champ); font-weight:800; padding:12px 18px; border-radius:999px; text-decoration:none}
+.evitement:focus{top:12px}
+main:focus{outline:none}
+/* la pastille ne cache jamais le bas de la page (WCAG 2.4.11) */
+.pied{padding-bottom:112px}
+/* rien ne déborde à 320 px, même en « texte plus grand » (WCAG 1.4.10) */
+.suite-grille > *,.chiffres > *,.etapes > *{min-width:0}
+.h2,.titre,.final-titre,.carte-titre{overflow-wrap:break-word; hyphens:manual}
+.carte-oblig{font-size:.8125rem; color:var(--gris); margin:-6px 0 4px}
+/* à l'impression, tout est visible et immobile */
+@media print{.anime .monte{opacity:1!important; transform:none!important} .reglages,.ruban,.evitement{display:none}}
+/* en mode contraste élevé de Windows, une bordure transparente devient visible : les boutons gardent leur forme */
+.action,.appel,.reglages summary,.etape,.carte,.reglages-panneau{border:2px solid transparent}

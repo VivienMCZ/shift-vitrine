@@ -4,37 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Pas d'en-tête HTTP possible sur GitHub Pages : la politique de sécurité passe par cette balise.
-     Aucun script, aucun style inline, aucun tiers chargé. Seul l'envoi du formulaire part vers Brevo. -->
+     Aucun script inline, aucun style inline, aucun tiers chargé. Seul l'envoi du formulaire part vers Brevo. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; form-action 'self' https://*.sibforms.com https://vivienmcz.github.io; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
-<title>Shift · Mentions légales et confidentialité</title>
+<title>Shift · Mentions légales, sources et confidentialité</title>
 <meta name="description" content="Qui édite Shift, qui l'héberge, et ce que devient ton adresse e-mail.">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 </head>
 <body>
+<a class="evitement" href="#contenu">Aller au contenu</a>
 <header class="nav">
   <a class="marque" href="./" aria-label="Shift, accueil">
     <svg class="pastille" viewBox="0 0 48 48" aria-hidden="true">
       <rect class="boitier" width="48" height="48" rx="13"/>
       <path class="grille" d="M12 12H36M12 24H36M12 36H36"/>
       <path class="trajet" d="M36 12H12V24H36V36H12"/>
-      <circle class="bille" cx="12" cy="36" r="4.6"/>
+      <circle class="bille" cx="0" cy="0" r="4.6"/>
     </svg>
     <span>shift</span>
   </a>
 </header>
 
-<main class="cadre texte">
-<h1>Mentions légales et confidentialité</h1>
+<main id="contenu" tabindex="-1" class="cadre texte">
+<h1>Mentions légales, sources et confidentialité</h1>
 
 <h2>Qui édite ce site</h2>
-<p>[À COMPLÉTER : nom affiché de l'éditeur], directeur de la publication. Contact&nbsp;: [À COMPLÉTER : e-mail de contact].</p>
+<p>[À COMPLÉTER : nom affiché de l'éditeur], directeur de la publication. Contact&nbsp;: <a href="mailto:marcuz.vivien@gmail.com">marcuz.vivien@gmail.com</a>.</p>
 
 <h2>Qui l'héberge</h2>
 <p>GitHub, Inc. (GitHub Pages), 88 Colin P Kelly Jr Street, San Francisco, CA 94107, États-Unis.</p>
 
-<h2>Ce que devient ton adresse e-mail</h2>
+<h2 id="donnees">Ce que devient ton adresse e-mail</h2>
 <ul>
   <li><strong>Pourquoi</strong>&nbsp;: t'envoyer par e-mail les nouvelles aides au permis et l'ouverture de Shift. Rien d'autre&nbsp;: jamais de publicité pour un tiers, jamais de revente.</li>
   <li><strong>Sur quelle base</strong>&nbsp;: ton accord, donné en cochant la case puis en confirmant ton adresse. Tu peux le retirer à tout moment, en un clic depuis chaque e-mail.</li>
@@ -48,10 +49,17 @@
 <p>GitHub, qui héberge ces pages, enregistre comme tout hébergeur l'adresse IP des visiteurs dans ses journaux techniques, pour la sécurité de son service. Ces journaux sont aux États-Unis. GitHub adhère au cadre de protection des données entre l'Union européenne et les États-Unis (Data Privacy Framework).</p>
 
 <h2>Cookies et mesure d'audience</h2>
-<p>Aucun. Ce site ne dépose aucun cookie et ne charge aucun outil de mesure ni de publicité.</p>
+<p>Aucun. Ce site ne dépose aucun cookie et ne charge aucun outil de mesure ni de publicité. Seuls les réglages d'affichage que tu choisis (animations, taille du texte, lecture facilitée, contraste, liens soulignés) sont gardés dans ton navigateur, pour s'appliquer à ta prochaine visite. Ils ne sont jamais envoyés.</p>
 
-<h2>Les chiffres affichés</h2>
-<p>Les montants viennent des sites officiels cités sous chacun, à la date indiquée. Ce sont des montants indicatifs&nbsp;: c'est l'organisme qui décide. Shift n'est lié à aucun de ces organismes.</p>
+<h2 id="sources">Sources et conditions des chiffres</h2>
+<p>Montants indicatifs&nbsp;: c'est l'organisme qui décide. Shift n'est lié à aucun de ces organismes. Chaque montant ci-dessous est un plafond, sous les conditions indiquées.</p>
+<ol class="notes">
+  <li id="n1"><strong>1 426&nbsp;€ en moyenne</strong>&nbsp;: forfait 20&nbsp;h de conduite (1&nbsp;396&nbsp;€, moyenne de 999 formules du réseau Club Rousseau, 2026) + examen du code (30&nbsp;€, tarif fixé par l'État). Confiance moyenne. Les heures en plus se paient à part (56&nbsp;€ en moyenne), comme la préparation au code. Source&nbsp;: <a href="https://public.codesrousseau.fr/conseils-pratiques/979-prix-du-permis-de-conduire-voiture-combien-ca-coute-au-total.html">codesrousseau.fr</a>, vérifié le 14/10/2026.</li>
+  <li id="n2"><strong>Jusqu'à 900&nbsp;€ avec ton CPF</strong>, selon ton solde. Depuis le 21/02/2026, le CPF ne paie le permis que si tu es inscrit à France Travail, ou si un employeur, un OPCO, une collectivité ou l'État met au moins 100&nbsp;€ avec toi. Source&nbsp;: <a href="https://www.service-public.gouv.fr/particuliers/actualites/A17164">service-public.gouv.fr</a>, vérifié le 08/10/2026.</li>
+  <li id="n3"><strong>500&nbsp;€ de Voisins-le-Bretonneux</strong>&nbsp;: si tu y habites, as entre 18 et 25&nbsp;ans et ne passes pas le permis en conduite accompagnée. D'autres communes des Yvelines aident aussi, avec leurs propres règles. Source&nbsp;: <a href="https://www.voisins78.fr/voisins/actualites/2672-bourse-permis-bafa.html">voisins78.fr</a>, vérifié le 08/10/2026.</li>
+  <li id="n4"><strong>Permis à 1&nbsp;€/jour</strong>&nbsp;: jusqu'à 1&nbsp;200&nbsp;€ prêtés aux 15-25&nbsp;ans, avec une auto-école labellisée et partenaire du dispositif. C'est un prêt, pas une aide&nbsp;: il étale le paiement, il ne baisse pas le prix. Source&nbsp;: <a href="https://www.securite-routiere.gouv.fr/passer-son-permis-de-conduire/financement-du-permis-de-conduire/permis-1-eu-par-jour/conditions-deligibilite">securite-routiere.gouv.fr</a>, vérifié le 08/10/2026.</li>
+  <li id="n5"><strong>Nouvelle aide de la Région Île-de-France</strong>&nbsp;: 500&nbsp;€ annoncés le 21/09/2026, 1&nbsp;000&nbsp;€ pour les jeunes en situation de handicap. Pas encore ouverte&nbsp;: ni la date ni les conditions ne sont publiées. Source&nbsp;: <a href="https://www.iledefrance.fr/presse/assises-de-la-jeunesse-15-meu-supplementaires-et-5-nouvelles-mesures-pour-donner-aux-jeunes-franciliens-les-moyens-de-construire-leur-avenir">iledefrance.fr</a>, vérifié le 08/10/2026.</li>
+</ol>
 
 <p><a class="champ-lien" href="./">Retour à l'accueil</a></p>
 </main>
@@ -61,9 +69,9 @@
     <div class="pied-haut">
       <div>
         <p class="pied-marque">Shift</p>
-        <p class="pied-promesse">Gratuit pour toi, sans compte.</p>
+        <p class="pied-promesse">Gratuit pour toi.</p>
       </div>
-      <a href="mentions-legales.html">Mentions légales et confidentialité</a>
+      <a href="mentions-legales.html">Mentions légales, sources et confidentialité</a>
     </div>
     <p class="pied-mot">© 2026 Shift</p>
   </div>

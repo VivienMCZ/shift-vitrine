@@ -4,16 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Pas d'en-tête HTTP possible sur GitHub Pages : la politique de sécurité passe par cette balise.
-     Aucun script, aucun style inline, aucun tiers chargé. Seul l'envoi du formulaire part vers Brevo. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self'; form-action 'self' https://*.sibforms.com https://vivienmcz.github.io; base-uri 'none'">
+     Aucun script inline, aucun style inline, aucun tiers chargé ; motion.js ne fait qu'animer. Seul l'envoi du formulaire part vers Brevo. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; form-action 'self' https://*.sibforms.com https://vivienmcz.github.io; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <title>Shift · Les aides pour ton permis</title>
 <meta name="description" content="Le forfait 20 h + code du permis B coûte en moyenne 1 426 €. Des aides peuvent en payer une partie. Rejoins la liste : on te prévient dès que la nouvelle aide de la Région Île-de-France ouvre.">
 <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script src="motion.js"></script>
 </head>
 <body>
+<a class="evitement" href="#contenu">Aller au contenu</a>
 <!--
   Chiffres recopiés du calculateur (dépôt shift : backend/apps/aides/data/aides.yaml et
   cout-reference.yaml). Vérifiés le 08/10/2026 (aides) et le 14/10/2026 (coût).
@@ -25,63 +27,83 @@
       <rect class="boitier" width="48" height="48" rx="13"/>
       <path class="grille" d="M12 12H36M12 24H36M12 36H36"/>
       <path class="trajet" d="M36 12H12V24H36V36H12"/>
-      <circle class="bille" cx="12" cy="36" r="4.6"/>
+      <circle class="bille" cx="0" cy="0" r="4.6"/>
     </svg>
     <span>shift</span>
   </a>
 </header>
 
-<main>
+<main id="contenu" tabindex="-1">
   <section class="heros" aria-labelledby="titre">
     <div class="cadre">
       <p class="oeil">Le permis B, ce que ça coûte</p>
-      <h1 id="titre" class="titre">Ton forfait permis coûte en moyenne <span class="titre-chiffre">1&nbsp;426&nbsp;€.</span></h1>
-      <p class="chapeau">Forfait 20&nbsp;h + code. Les heures en plus se paient à part (56&nbsp;€ en moyenne). Des aides peuvent en payer une partie.</p>
-      <p class="source">Forfait 20&nbsp;h&nbsp;: moyenne de 999 formules, réseau Club Rousseau 2026 · code&nbsp;: 30&nbsp;€, tarif fixé par l'État · confiance moyenne · vérifié le 14/10/2026</p>
+      <h1 id="titre" class="titre"><span class="ligne"><i>Ton permis&nbsp;:</i></span> <span class="ligne titre-chiffre"><i><span class="lu">1&nbsp;426</span><span data-compte="1426" aria-hidden="true">1&nbsp;426</span>&nbsp;€</i></span> <span class="ligne"><i>en moyenne.</i></span></h1>
+      <p class="chapeau entre" data-d="1">Forfait 20&nbsp;h + code<a class="note" href="mentions-legales.html#n1" aria-label="Source et conditions, note 1">1</a>. Des aides peuvent en payer une partie. Shift te dit lesquelles.</p>
+      <a class="appel entre" data-d="3" href="#liste"><span>Être prévenu en premier</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 3v12M4 10l5 5 5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 
       <ul class="chiffres">
-        <li class="chiffre">
-          <p class="oeil">Aide · CPF</p>
-          <p class="montant">900&nbsp;€</p>
-          <p class="chiffre-mot">Ton CPF pourrait payer jusqu'à 900&nbsp;€, selon ton solde, si tu es inscrit à France Travail ou si un employeur ou un organisme met au moins 100&nbsp;€ avec toi.</p>
-          <p class="source"><a href="https://www.service-public.gouv.fr/particuliers/actualites/A17164" rel="noopener">service-public.gouv.fr</a> · vérifié le 08/10/2026</p>
+        <li class="chiffre monte">
+          <p class="montant"><span class="lu">900</span><span data-compte="900" aria-hidden="true">900</span>&nbsp;€</p>
+          <p class="chiffre-mot">avec ton CPF<a class="note" href="mentions-legales.html#n2" aria-label="Source et conditions, note 2">2</a></p>
+          <p class="chiffre-cond">si tu es à France Travail ou cofinancé</p>
         </li>
-        <li class="chiffre">
-          <p class="oeil">Aide · une commune</p>
-          <p class="montant">500&nbsp;€</p>
-          <p class="chiffre-mot">Certaines communes des Yvelines aident aussi. Si tu habites Voisins-le-Bretonneux et as entre 18 et 25&nbsp;ans&nbsp;: 500&nbsp;€, hors conduite accompagnée.</p>
-          <p class="source"><a href="https://www.voisins78.fr/voisins/actualites/2672-bourse-permis-bafa.html" rel="noopener">voisins78.fr</a> · vérifié le 08/10/2026</p>
+        <li class="chiffre monte">
+          <p class="montant"><span class="lu">500</span><span data-compte="500" aria-hidden="true">500</span>&nbsp;€</p>
+          <p class="chiffre-mot">de Voisins-le-Bretonneux<a class="note" href="mentions-legales.html#n3" aria-label="Source et conditions, note 3">3</a></p>
+          <p class="chiffre-cond">si tu y habites et as 18‑25&nbsp;ans</p>
         </li>
-        <li class="chiffre">
-          <p class="oeil">Prêt · Permis à 1&nbsp;€/jour</p>
-          <p class="montant">1&nbsp;200&nbsp;€</p>
-          <p class="chiffre-mot">Permis à 1&nbsp;€/jour&nbsp;: jusqu'à 1&nbsp;200&nbsp;€ prêtés aux 15‑25&nbsp;ans, avec une auto-école partenaire. C'est un prêt, pas une aide&nbsp;: il étale le paiement.</p>
-          <p class="source"><a href="https://www.securite-routiere.gouv.fr/passer-son-permis-de-conduire/financement-du-permis-de-conduire/permis-1-eu-par-jour/conditions-deligibilite" rel="noopener">securite-routiere.gouv.fr</a> · vérifié le 08/10/2026</p>
+        <li class="chiffre monte">
+          <p class="montant"><span class="lu">1&nbsp;200</span><span data-compte="1200" aria-hidden="true">1&nbsp;200</span>&nbsp;€</p>
+          <p class="chiffre-mot">prêtés, le Permis à 1&nbsp;€/<span class="insec">jour<a class="note" href="mentions-legales.html#n4" aria-label="Source et conditions, note 4">4</a></span></p>
+          <p class="chiffre-cond">un prêt, pas une aide</p>
         </li>
       </ul>
-      <p class="avertissement">Montants indicatifs&nbsp;: c'est l'organisme qui décide.</p>
+      <p class="avertissement">Jusqu'à, sous conditions. Montants indicatifs&nbsp;: c'est l'organisme qui décide. <a href="mentions-legales.html#sources">Sources et conditions</a></p>
+    </div>
+  </section>
+
+
+  <!-- Deux bandeaux croisés, comme une affiche de campagne. Décoratifs : tout ce qu'ils disent est déjà écrit sur la page. -->
+  <div class="ruban" aria-hidden="true">
+    <div class="ruban-ligne ruban-a"><div><span>Des aides pour ton permis</span><span>Une nouvelle aide de la Région arrive</span><span>Gratuit, compte facultatif</span><span>Des aides pour ton permis</span><span>Une nouvelle aide de la Région arrive</span><span>Gratuit, compte facultatif</span><span>Des aides pour ton permis</span><span>Une nouvelle aide de la Région arrive</span><span>Gratuit, compte facultatif</span><span>Des aides pour ton permis</span><span>Une nouvelle aide de la Région arrive</span><span>Gratuit, compte facultatif</span></div></div>
+    <div class="ruban-ligne ruban-b"><div><span>Ton permis</span><span>Tes aides</span><span>Ton auto-école</span><span>Ton permis</span><span>Tes aides</span><span>Ton auto-école</span><span>Ton permis</span><span>Tes aides</span><span>Ton auto-école</span><span>Ton permis</span><span>Tes aides</span><span>Ton auto-école</span></div></div>
+    <svg class="sceau" viewBox="0 0 200 200">
+      <defs><path id="cercle" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+      <circle cx="100" cy="100" r="98"/>
+      <text><textPath href="#cercle">BIENTÔT · GRATUIT · SANS PUB · BIENTÔT · GRATUIT · SANS PUB ·</textPath></text>
+      <path class="sceau-fleche" d="M100 72v52M80 104l20 20 20-20"/>
+    </svg>
+  </div>
+
+  <section class="promesse" aria-labelledby="promesse-titre">
+    <div class="cadre">
+      <p class="oeil oeil-bleu">Bientôt sur Shift</p>
+      <h2 id="promesse-titre" class="h2 promesse-titre">Ton permis en 3&nbsp;étapes.</h2>
+      <ol class="etapes">
+        <li class="etape monte"><span class="etape-n" aria-hidden="true">01</span><h3>Trouve tes aides</h3><p>Quelques questions sur ta situation. Shift te montre les aides auxquelles tu pourrais être éligible, avec leur montant et où les demander.</p></li>
+        <li class="etape monte"><span class="etape-n" aria-hidden="true">02</span><h3>Choisis ton auto-école</h3><p>Toutes les auto-écoles des Yvelines, avec leur taux de réussite officiel quand il est fiable. Le classement ne s'achète pas.</p></li>
+        <li class="etape monte"><span class="etape-n" aria-hidden="true">03</span><h3>Lance-toi</h3><p>Tu arrives à l'auto-école en sachant ce que tu peux financer. Gratuit, sans pub, compte facultatif.</p></li>
+      </ol>
     </div>
   </section>
 
   <section class="suite" aria-labelledby="region">
     <div class="cadre suite-grille">
-      <div class="region">
-        <p class="badge">Annoncée, pas encore ouverte</p>
+      <div class="region monte">
+        <p class="badge"><span class="pouls" aria-hidden="true"></span>Annoncée, pas encore ouverte</p>
         <p class="oeil oeil-bleu">Une nouvelle aide arrive</p>
-        <h2 id="region" class="h2">La Région Île‑de‑France a annoncé 500&nbsp;€.</h2>
-        <p class="region-mot">1&nbsp;000&nbsp;€ pour les jeunes en situation de handicap. Ni la date ni les conditions ne sont encore publiées.</p>
-        <p class="region-appel">Rejoins la liste&nbsp;: on te prévient dès qu'elle ouvre.</p>
-        <p class="avertissement-petit">Montants indicatifs&nbsp;: c'est l'organisme qui décide.</p>
-        <p class="source source-sombre"><a href="https://www.iledefrance.fr/presse/assises-de-la-jeunesse-15-meu-supplementaires-et-5-nouvelles-mesures-pour-donner-aux-jeunes-franciliens-les-moyens-de-construire-leur-avenir" rel="noopener">iledefrance.fr</a> · annoncée le 21/09/2026 · vérifiée le 08/10/2026</p>
+        <h2 id="region" class="h2">La Région Île‑de‑France prépare 500&nbsp;€.</h2>
+        <p class="region-appel">Rejoins la liste&nbsp;: on te prévient dès qu'elle ouvre<a class="note" href="mentions-legales.html#n5" aria-label="Source et conditions, note 5">5</a>.</p>
 
       </div>
 
       <!-- Formulaire Brevo envoyé tel quel, sans leur script : aucun traceur sur la page.
            L'adresse d'envoi (action) vient du formulaire créé dans le compte Brevo de Vivien,
            double confirmation activée. Tant qu'elle n'est pas posée, la page n'est pas publiée. -->
-      <form class="carte" id="liste" method="post" action="https://BREVO_FORM_URL.sibforms.com/serve/A_REMPLACER" aria-labelledby="liste-titre">
+      <form class="carte monte" data-d="1" id="liste" method="post" action="https://BREVO_FORM_URL.sibforms.com/serve/A_REMPLACER" aria-labelledby="liste-titre">
         <h2 id="liste-titre" class="carte-titre">Rejoins la liste d'attente</h2>
         <p class="carte-mot">Un e-mail quand l'aide de la Région ouvre, puis pour chaque nouvelle aide au permis.</p>
+        <p class="carte-oblig">Tous les champs sont obligatoires.</p>
 
         <label class="etiquette" for="email">Adresse e-mail</label>
         <input class="champ" id="email" name="EMAIL" type="email" autocomplete="email" inputmode="email" placeholder="nom@exemple.fr" required>
@@ -96,7 +118,7 @@
 
         <label class="accord">
           <input type="checkbox" name="OPT_IN" value="1" required>
-          <span>J'accepte de recevoir par e-mail les nouvelles aides au permis et l'ouverture de Shift. Désinscription en un clic. <a href="mentions-legales.html">Mentions légales et confidentialité</a></span>
+          <span>J'accepte de recevoir par e-mail les nouvelles aides au permis et l'ouverture de Shift. Désinscription en un clic. <a href="mentions-legales.html#donnees">Confidentialité</a></span>
         </label>
 
         <!-- piège à robots de Brevo : un humain ne le voit pas et le laisse vide -->
@@ -109,22 +131,63 @@
         </button>
       </form>
 
-      <div class="ecoles">
+      <div class="ecoles monte">
         <p class="oeil oeil-bleu">Pour les auto-écoles</p>
-        <p class="ecoles-mot">Gratuit pour les auto-écoles. Être partenaire ne change pas la place dans la liste&nbsp;: le classement ne s'achète pas.</p>
+        <p class="ecoles-mot">Gratuit pour les auto-écoles. Et le classement ne s'achète pas.</p>
       </div>
     </div>
   </section>
+  <section class="faq" aria-labelledby="faq-titre">
+    <div class="cadre faq-grille">
+      <h2 id="faq-titre" class="h2">Questions rapides</h2>
+      <div class="faq-liste">
+        <details class="monte"><summary>C'est vraiment gratuit&nbsp;?</summary><p>Oui, pour toi, sans abonnement ni pub. Pour les auto-écoles, être listée est gratuit, et rien n'est facturé au lancement.</p></details>
+        <details class="monte"><summary>Alors comment Shift gagne de l'argent&nbsp;?</summary><p>Plus tard, une auto-école partenaire nous rémunérera quand un élève venu de Shift s'inscrit chez elle. Être partenaire ne change jamais sa place dans la liste.</p></details>
+        <details class="monte"><summary>Pourquoi m'inscrire maintenant&nbsp;?</summary><p>Pour être prévenu dès que l'aide de la Région ouvre et dès que Shift est en ligne. Un e-mail de temps en temps, désinscription en un clic.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="cadre">
+      <p class="final-titre">Sois prévenu en premier.</p>
+      <a class="appel" href="#liste"><span>Rejoindre la liste d'attente</span><svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 15V3M4 8l5-5 5 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </section>
 </main>
+
+<!-- Réglages d'affichage : une pastille qui suit la lecture (son anneau se remplit au défilement).
+     Les cases marchent sans JavaScript (CSS :has) ; motion.js ne fait que s'en souvenir. -->
+<details class="reglages">
+  <summary aria-label="Accessibilité : réglages d'affichage">
+    <svg class="anneau" viewBox="0 0 76 76" aria-hidden="true"><circle class="anneau-fond" cx="38" cy="38" r="35"/><circle class="anneau-avance" cx="38" cy="38" r="35" pathLength="100"/></svg>
+    <svg class="acces" viewBox="0 0 76 76" aria-hidden="true">
+      <defs><path id="acces-cercle" d="M38,38 m-24,0 a24,24 0 1,1 48,0 a24,24 0 1,1 -48,0"/></defs>
+      <text class="acces-texte"><textPath href="#acces-cercle" textLength="149" lengthAdjust="spacingAndGlyphs">ACCESSIBILITÉ · ACCESSIBILITÉ ·</textPath></text>
+      <g class="acces-picto">
+        <circle cx="38" cy="29.5" r="2.6"/>
+        <path d="M30 34.5h16M38 34.5v6.5M38 41l-4.5 8M38 41l4.5 8"/>
+      </g>
+    </svg>
+  </summary>
+  <fieldset class="reglages-panneau">
+    <legend>Affichage</legend>
+    <label><input type="checkbox" id="pause" data-reglage="pause"> Arrêter les animations</label>
+    <label><input type="checkbox" id="grand" data-reglage="grand"> Texte plus grand</label>
+    <label><input type="checkbox" id="lecture" data-reglage="lecture"> Lecture facilitée</label>
+    <label><input type="checkbox" id="contraste" data-reglage="contraste"> Contraste renforcé</label>
+    <label><input type="checkbox" id="liens" data-reglage="liens"> Souligner les liens</label>
+  </fieldset>
+</details>
 
 <footer class="pied">
   <div class="cadre">
     <div class="pied-haut">
       <div>
         <p class="pied-marque">Shift</p>
-        <p class="pied-promesse">Gratuit pour toi, sans compte.</p>
+        <p class="pied-promesse">Gratuit pour toi.</p>
       </div>
-      <a href="mentions-legales.html">Mentions légales et confidentialité</a>
+      <a href="mentions-legales.html">Mentions légales, sources et confidentialité</a>
     </div>
     <p class="pied-mot">© 2026 Shift</p>
   </div>
