@@ -214,3 +214,20 @@ body:has(#pause:checked) *,body:has(#pause:checked) *::before,body:has(#pause:ch
   .ligne i,.entre,.anime .monte{opacity:1!important; transform:none!important}
   .anime .chiffre::before{transform:none}
 }
+
+/* page de vente : chiffres courts, notes vers les sources */
+.note{font-size:.5em; font-weight:700; vertical-align:super; line-height:0; margin-left:.08em; text-decoration:none; color:inherit; opacity:.85; padding:0 .15em}
+.titre .note,.montant .note{font-size:.32em}
+.note:hover{text-decoration:underline}
+.chiffre-mot{font-weight:800; font-size:clamp(1.15rem,1.8vw,1.45rem); line-height:1.2; max-width:22ch}
+.chiffre-cond{font-size:.875rem; color:var(--champ-clair); margin-top:6px}
+.avertissement a{color:inherit; text-underline-offset:3px}
+.promesse{background:var(--bande); padding:clamp(40px,6vw,72px) 0 0}
+.promesse-liste{list-style:none; display:grid; gap:12px; margin-top:6px}
+.promesse-liste li{font-size:clamp(1.5rem,3.6vw,2.6rem); font-weight:500; letter-spacing:-.03em; line-height:1.1}
+.promesse-liste b{font-weight:900; color:var(--champ)}
+.region-appel{font-size:clamp(1.15rem,1.8vw,1.4rem)}
+.notes{padding-left:22px}
+.notes li{margin-bottom:14px}
+.notes li:target{background:var(--bande); outline:6px solid var(--bande)}
+@media (min-width:860px){.promesse-liste{grid-template-columns:repeat(3,1fr); gap:32px}}
