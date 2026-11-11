@@ -282,7 +282,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 }
 .reglages summary::-webkit-details-marker{display:none}
 .reglages summary:focus-visible{outline:3px solid var(--encre); outline-offset:3px}
-.anneau{position:absolute; inset:0; width:76px; height:76px; transform:rotate(-90deg)}
+.anneau{position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg)}
 .anneau circle{fill:none; stroke-width:3.5}
 .anneau-fond{stroke:var(--bande)}
 .anneau-avance{stroke:var(--champ); stroke-dasharray:100; stroke-dashoffset:100; stroke-linecap:round}
@@ -319,7 +319,7 @@ html:has(#contraste:checked) .source,html:has(#contraste:checked) .chiffre-cond{
 html:has(#liens:checked) a{text-decoration:underline!important; text-underline-offset:3px}
 
 /* le pictogramme accessibilité, et « ACCESSIBILITÉ » qui tourne autour comme le sceau */
-.acces{position:absolute; inset:0; width:76px; height:76px}
+.acces{position:absolute; inset:0; width:100%; height:100%}
 .acces-texte{font-weight:800; font-size:6.4px; letter-spacing:.04em; fill:var(--champ); transform-origin:38px 38px; animation:tourner 14s linear infinite}
 .acces-picto circle{fill:var(--champ)}
 .acces-picto path{stroke:var(--champ); stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; fill:none}
