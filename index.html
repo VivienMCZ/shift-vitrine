@@ -61,8 +61,6 @@
     </div>
   </section>
 
-  <!-- Pause des animations : une case à cocher, donc sans JavaScript (WCAG 2.2.2). -->
-  <div class="pause"><input type="checkbox" id="pause"><label for="pause">Mettre les animations en pause</label></div>
 
   <!-- Deux bandeaux croisés, comme une affiche de campagne. Décoratifs : tout ce qu'ils disent est déjà écrit sur la page. -->
   <div class="ruban" aria-hidden="true">
@@ -155,6 +153,23 @@
     </div>
   </section>
 </main>
+
+<!-- Réglages d'affichage : une pastille qui suit la lecture (son anneau se remplit au défilement).
+     Les cases marchent sans JavaScript (CSS :has) ; motion.js ne fait que s'en souvenir. -->
+<details class="reglages">
+  <summary aria-label="Réglages d'affichage et d'accessibilité">
+    <svg class="anneau" viewBox="0 0 56 56" aria-hidden="true"><circle class="anneau-fond" cx="28" cy="28" r="25"/><circle class="anneau-avance" cx="28" cy="28" r="25" pathLength="100"/></svg>
+    <span class="reglages-icone" aria-hidden="true">Aa</span>
+  </summary>
+  <fieldset class="reglages-panneau">
+    <legend>Affichage</legend>
+    <label><input type="checkbox" id="pause" data-reglage="pause"> Arrêter les animations</label>
+    <label><input type="checkbox" id="grand" data-reglage="grand"> Texte plus grand</label>
+    <label><input type="checkbox" id="lecture" data-reglage="lecture"> Lecture facilitée (dyslexie)</label>
+    <label><input type="checkbox" id="contraste" data-reglage="contraste"> Contraste renforcé</label>
+    <label><input type="checkbox" id="liens" data-reglage="liens"> Souligner les liens</label>
+  </fieldset>
+</details>
 
 <footer class="pied">
   <div class="cadre">

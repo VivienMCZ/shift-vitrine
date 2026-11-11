@@ -202,12 +202,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(-
 /* texte lu par les lecteurs d'écran, invisible à l'écran */
 .lu{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
 
-/* la case « pause » : arrête tout ce qui tourne en boucle (WCAG 2.2.2) */
-.pause{background:var(--bande); padding:16px var(--marge) 0; text-align:right; font-size:.8125rem}
-.pause label{display:inline-flex; align-items:center; min-height:44px; cursor:pointer; text-decoration:underline; text-underline-offset:3px}
-.pause input{width:18px; height:18px; margin-right:8px; vertical-align:middle; accent-color:var(--champ)}
-body:has(#pause:checked) *,body:has(#pause:checked) *::before,body:has(#pause:checked) *::after{animation-play-state:paused!important}
-
 /* moins d'animations demandées : tout est posé, rien ne bouge */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important; transition:none!important}
@@ -278,3 +272,49 @@ body:has(#pause:checked) *,body:has(#pause:checked) *::before,body:has(#pause:ch
 .pastille .trajet{stroke-dasharray:96; stroke-dashoffset:96; animation:tracer 1.1s var(--courbe) .2s forwards}
 @keyframes tracer{to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion:reduce){.pastille .trajet{stroke-dashoffset:0}}
+
+/* ───────────── Réglages d'affichage : la pastille ───────────── */
+.reglages{position:fixed; right:16px; bottom:16px; z-index:20}
+.reglages summary{
+  list-style:none; cursor:pointer; position:relative; width:56px; height:56px; border-radius:50%;
+  background:var(--blanc); color:var(--champ); display:grid; place-items:center;
+  box-shadow:0 8px 28px rgba(14,15,20,.22);
+}
+.reglages summary::-webkit-details-marker{display:none}
+.reglages summary:focus-visible{outline:3px solid var(--encre); outline-offset:3px}
+.reglages-icone{font-weight:900; font-size:1.05rem; letter-spacing:-.04em}
+.anneau{position:absolute; inset:0; width:56px; height:56px; transform:rotate(-90deg)}
+.anneau circle{fill:none; stroke-width:4}
+.anneau-fond{stroke:var(--bande)}
+.anneau-avance{stroke:var(--champ); stroke-dasharray:100; stroke-dashoffset:100; stroke-linecap:round}
+/* l'anneau suit l'avance de la lecture (navigateurs qui le savent ; ailleurs il reste vide) */
+@supports (animation-timeline:scroll()){
+  .anneau-avance{animation:avancer linear both; animation-timeline:scroll(root)}
+  @keyframes avancer{to{stroke-dashoffset:0}}
+}
+.reglages-panneau{
+  position:absolute; right:0; bottom:68px; width:min(300px,calc(100vw - 32px));
+  background:var(--blanc); color:var(--encre); border:0; border-radius:16px; padding:16px 18px 10px;
+  box-shadow:0 16px 44px rgba(14,15,20,.25);
+}
+.reglages-panneau legend{float:left; width:100%; font-weight:800; font-size:.6875rem; letter-spacing:.14em; text-transform:uppercase; color:var(--champ); margin-bottom:6px}
+.reglages-panneau label{display:flex; align-items:center; gap:10px; min-height:44px; font-weight:600; font-size:.95rem; cursor:pointer; clear:both}
+.reglages-panneau input{width:20px; height:20px; accent-color:var(--champ); flex:0 0 auto}
+
+/* 1. arrêter les animations */
+html:has(#pause:checked) *,html:has(#pause:checked) *::before,html:has(#pause:checked) *::after{animation-play-state:paused!important; transition:none!important}
+html:has(#pause:checked) .ligne i,html:has(#pause:checked) .entre,html:has(#pause:checked) .anime .monte{animation:none!important; opacity:1!important; transform:none!important}
+html:has(#pause:checked) .pastille .trajet{animation:none; stroke-dashoffset:0}
+/* l'anneau de lecture n'est pas une animation décorative : il continue */
+html:has(#pause:checked) .anneau-avance{animation-play-state:running!important}
+/* 2. texte plus grand */
+html:has(#grand:checked){font-size:125%}
+/* 3. lecture facilitée : police système sans empattement, espacements de WCAG 1.4.12 */
+html:has(#lecture:checked) body,html:has(#lecture:checked) .champ,html:has(#lecture:checked) .action{font-family:Verdana,Tahoma,'Segoe UI',system-ui,sans-serif}
+html:has(#lecture:checked) main p,html:has(#lecture:checked) main li,html:has(#lecture:checked) main summary,html:has(#lecture:checked) main label{letter-spacing:.12em; word-spacing:.16em; line-height:1.6}
+html:has(#lecture:checked) .titre,html:has(#lecture:checked) .h2,html:has(#lecture:checked) .final-titre,html:has(#lecture:checked) .carte-titre{text-transform:none; letter-spacing:0; line-height:1.15}
+/* 4. contraste renforcé */
+html:has(#contraste:checked){--champ-clair:#FFFFFF; --gris:#0E0F14; --trait:#0E0F14}
+html:has(#contraste:checked) .source,html:has(#contraste:checked) .chiffre-cond{color:#FFFFFF}
+/* 5. souligner les liens */
+html:has(#liens:checked) a{text-decoration:underline!important; text-underline-offset:3px}

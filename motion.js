@@ -31,4 +31,21 @@ const vus = new IntersectionObserver((entrees) => {
 }, { threshold: 0.2 });
 
 document.querySelectorAll('.monte, .titre-chiffre').forEach((el) => vus.observe(el));
+
+  // Le panneau se ferme avec Échap (le focus revient sur la pastille) ou par un clic à côté.
+  const reglages = document.querySelector('.reglages');
+  if (reglages) {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && reglages.open) { reglages.open = false; reglages.querySelector('summary').focus(); }
+    });
+    document.addEventListener('click', (e) => { if (reglages.open && !reglages.contains(e.target)) reglages.open = false; });
+  }
+
+  // Se souvenir des réglages d'affichage sur cet appareil (rien n'est envoyé).
+  document.querySelectorAll('[data-reglage]').forEach((c) => {
+    try { c.checked = localStorage.getItem('shift-' + c.dataset.reglage) === '1'; } catch (e) { /* stockage bloqué : réglage non gardé */ }
+    c.addEventListener('change', () => {
+      try { localStorage.setItem('shift-' + c.dataset.reglage, c.checked ? '1' : '0'); } catch (e) { /* idem */ }
+    });
+  });
 });
