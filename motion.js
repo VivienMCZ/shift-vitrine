@@ -54,9 +54,12 @@ document.querySelectorAll('.monte, .titre-chiffre').forEach((el) => vus.observe(
       bouton.disabled = true;
       erreur.hidden = true;
       try {
-        const rep = await fetch(liste.action, { method: 'POST', body: new URLSearchParams(new FormData(liste)) });
-        const json = await rep.json().catch(() => ({}));
-        if (!rep.ok || json.success !== true) throw new Error('refus');
+        // redirect: 'manual' : quand Brevo a une page de redirection réglée, il répond par une redirection
+        // (inscription acceptée). On ne la suit pas : la CSP (connect-src) bloquerait la page d'arrivée
+        // et l'inscription réussie s'afficherait comme une erreur (constaté le 12/11/2026).
+        const rep = await fetch(liste.action, { method: 'POST', body: new URLSearchParams(new FormData(liste)), redirect: 'manual' });
+        const accepte = rep.type === 'opaqueredirect' || (rep.ok && (await rep.json().catch(() => ({}))).success === true);
+        if (!accepte) throw new Error('refus');
         window.location.href = 'merci.html';
       } catch (err) {
         erreur.textContent = "Ton inscription n'a pas pu être enregistrée. Vérifie ton adresse et réessaie dans quelques minutes.";
