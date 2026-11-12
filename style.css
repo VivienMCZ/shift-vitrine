@@ -21,7 +21,10 @@ body{
   font-family:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
   background:var(--papier); color:var(--encre); line-height:1.45;
   -webkit-font-smoothing:antialiased;
+  /* pied de page collé en bas de l'écran sur les pages courtes (merci, confirmé) */
+  min-height:100vh; min-height:100dvh; display:flex; flex-direction:column;
 }
+body > main{flex:1 0 auto}
 a{color:inherit; text-underline-offset:3px}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--champ); outline-offset:2px}
 .cadre{max-width:1440px; margin:0 auto; padding:0 var(--marge)}
