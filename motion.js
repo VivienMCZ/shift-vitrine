@@ -63,7 +63,7 @@ document.querySelectorAll('.monte, .titre-chiffre').forEach((el) => vus.observe(
         const accepte = rep.type === 'opaqueredirect' || rep.redirected
           || (rep.ok && (await rep.json().catch(() => ({}))).success === true);
         if (!accepte) throw new Error('refus');
-        window.location.href = 'merci.html';
+        window.location.href = 'merci';
       } catch (err) {
         erreur.textContent = "Ton inscription n'a pas pu être enregistrée. Vérifie ton adresse et réessaie dans quelques minutes.";
         erreur.hidden = false;
