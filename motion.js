@@ -56,12 +56,13 @@ document.querySelectorAll('.monte, .titre-chiffre').forEach((el) => vus.observe(
       try {
         const rep = await fetch(liste.action, { method: 'POST', body: new URLSearchParams(new FormData(liste)) });
         const json = await rep.json().catch(() => ({}));
-        if (!rep.ok || json.success === false) throw new Error('refus');
+        if (!rep.ok || json.success !== true) throw new Error('refus');
         window.location.href = 'merci.html';
       } catch (err) {
         erreur.textContent = "Ton inscription n'a pas pu être enregistrée. Vérifie ton adresse et réessaie dans quelques minutes.";
         erreur.hidden = false;
         bouton.disabled = false;
+        liste.querySelector('#email').focus();
       }
     });
   }
