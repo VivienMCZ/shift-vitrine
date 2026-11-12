@@ -8,6 +8,7 @@ GitHub Pages : aucun serveur, aucun cookie, aucun secret. Un seul script, `motio
 | `index.html` | La vitrine : coût moyen du permis, trois montants sourcés, la nouvelle aide de la Région, le formulaire |
 | `mentions-legales.html` | Éditeur, hébergeur, ce que devient l'adresse e-mail, droits |
 | `merci.html` | Page « Vérifie ta boîte », vers laquelle Brevo renvoie après l'envoi |
+| `confirme.html` | Page « C'est confirmé », vers laquelle Brevo renvoie après le clic sur le lien de l'e-mail |
 | `motion.js` | Fait compter les chiffres et monter les blocs au défilement, ferme le panneau des réglages avec Échap, et se souvient des réglages d'affichage sur l'appareil (`localStorage`, rien n'est envoyé) |
 | `style.css`, `fonts/` | Styles et police Archivo, hébergée ici (jamais Google Fonts) |
 
