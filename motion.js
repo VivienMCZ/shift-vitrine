@@ -43,6 +43,29 @@ document.querySelectorAll('.monte, .titre-chiffre').forEach((el) => vus.observe(
     reglages.addEventListener('focusout', (e) => { if (!reglages.contains(e.relatedTarget)) reglages.open = false; });
   }
 
+  // Liste d'attente : envoi à Brevo en arrière-plan (sans charger leur script), puis page « Vérifie ta boîte ».
+  // Sans JavaScript, le formulaire part quand même, en envoi HTML classique.
+  const liste = document.getElementById('liste');
+  const erreur = document.getElementById('form-erreur');
+  if (liste) {
+    liste.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const bouton = liste.querySelector('button[type=submit]');
+      bouton.disabled = true;
+      erreur.hidden = true;
+      try {
+        const rep = await fetch(liste.action, { method: 'POST', body: new URLSearchParams(new FormData(liste)) });
+        const json = await rep.json().catch(() => ({}));
+        if (!rep.ok || json.success === false) throw new Error('refus');
+        window.location.href = 'merci.html';
+      } catch (err) {
+        erreur.textContent = "Ton inscription n'a pas pu être enregistrée. Vérifie ton adresse et réessaie dans quelques minutes.";
+        erreur.hidden = false;
+        bouton.disabled = false;
+      }
+    });
+  }
+
   // Se souvenir des réglages d'affichage sur cet appareil (rien n'est envoyé).
   document.querySelectorAll('[data-reglage]').forEach((c) => {
     try { c.checked = localStorage.getItem('shift-' + c.dataset.reglage) === '1'; } catch (e) { /* stockage bloqué : réglage non gardé */ }
