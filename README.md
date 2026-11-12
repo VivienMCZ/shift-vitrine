@@ -8,6 +8,7 @@ GitHub Pages : aucun serveur, aucun cookie, aucun secret. Un seul script, `motio
 | `index.html` | La vitrine : coût moyen du permis, trois montants sourcés, la nouvelle aide de la Région, le formulaire |
 | `mentions-legales.html` | Éditeur, hébergeur, ce que devient l'adresse e-mail, droits |
 | `merci.html` | Page « Vérifie ta boîte », vers laquelle Brevo renvoie après l'envoi |
+| `confirme.html` | Page « C'est confirmé », vers laquelle Brevo renvoie après le clic sur le lien de l'e-mail |
 | `motion.js` | Fait compter les chiffres et monter les blocs au défilement, ferme le panneau des réglages avec Échap, et se souvient des réglages d'affichage sur l'appareil (`localStorage`, rien n'est envoyé) |
 | `style.css`, `fonts/` | Styles et police Archivo, hébergée ici (jamais Google Fonts) |
 
@@ -24,10 +25,10 @@ Tester en local : `python3 -m http.server 8000` dans ce dossier, puis http://127
    ensuite un formulaire d'inscription avec la **double confirmation** activée, l'adresse de redirection
    `https://vivienmcz.github.io/shift-vitrine/merci.html`, et l'effacement des contacts non confirmés au
    bout de 30 jours si l'option existe.
-2. Copier l'adresse d'envoi du formulaire (`https://….sibforms.com/serve/…`) dans l'attribut `action` du
+2. ✅ Fait le 12/11/2026. Copier l'adresse d'envoi du formulaire (`https://….sibforms.com/serve/…`) dans l'attribut `action` du
    `<form>` de `index.html`, à la place de `BREVO_FORM_URL…A_REMPLACER`, et remplacer
    `https://*.sibforms.com` par cet hôte exact dans la CSP des trois pages.
-3. Compléter les deux `[À COMPLÉTER]` de `mentions-legales.html` (nom affiché, e-mail de contact).
+3. ✅ Fait. Compléter les deux `[À COMPLÉTER]` de `mentions-legales.html` (nom affiché, e-mail de contact).
 4. Settings → Pages → *Deploy from a branch* → `main`, dossier `/ (root)`.
 5. Envoyer une vraie inscription de test, dans Chrome **et** Firefox : le formulaire part, le retour vers
    `merci.html` n'est pas bloqué, l'e-mail de confirmation arrive, le lien de désinscription marche, et un

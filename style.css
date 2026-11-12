@@ -341,3 +341,4 @@ main:focus{outline:none}
 @media print{.anime .monte{opacity:1!important; transform:none!important} .reglages,.ruban,.evitement{display:none}}
 /* en mode contraste élevé de Windows, une bordure transparente devient visible : les boutons gardent leur forme */
 .action,.appel,.reglages summary,.etape,.carte,.reglages-panneau{border:2px solid transparent}
+.form-erreur{background:#FFEDED; color:#661D1D; border-radius:10px; padding:12px 14px; font-weight:600; font-size:.9rem}
