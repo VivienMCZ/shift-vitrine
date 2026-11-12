@@ -58,7 +58,10 @@ document.querySelectorAll('.monte, .titre-chiffre').forEach((el) => vus.observe(
         // (inscription acceptée). On ne la suit pas : la CSP (connect-src) bloquerait la page d'arrivée
         // et l'inscription réussie s'afficherait comme une erreur (constaté le 12/11/2026).
         const rep = await fetch(liste.action, { method: 'POST', body: new URLSearchParams(new FormData(liste)), redirect: 'manual' });
-        const accepte = rep.type === 'opaqueredirect' || (rep.ok && (await rep.json().catch(() => ({}))).success === true);
+        // Filet : si un navigateur suit quand même la redirection (connect-src autorise 'self' pour ça),
+        // arriver sur une page du site vaut aussi acceptation.
+        const accepte = rep.type === 'opaqueredirect' || rep.redirected
+          || (rep.ok && (await rep.json().catch(() => ({}))).success === true);
         if (!accepte) throw new Error('refus');
         window.location.href = 'merci.html';
       } catch (err) {
