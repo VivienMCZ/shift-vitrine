@@ -23,7 +23,7 @@ Tester en local : `python3 -m http.server 8000` dans ce dossier, puis http://127
    **couper le suivi des ouvertures et des clics** des e-mails (la page de confidentialité promet qu'il
    n'y en a pas), et ne créer aucune clé d'API. Créer une liste « Liste d'attente » et un attribut `PROFIL` (texte). Créer
    ensuite un formulaire d'inscription avec la **double confirmation** activée, l'adresse de redirection
-   `https://vivienmcz.github.io/shift-vitrine/merci.html`, et l'effacement des contacts non confirmés au
+   `https://shift-permis.com/merci.html`, et l'effacement des contacts non confirmés au
    bout de 30 jours si l'option existe.
 2. ✅ Fait le 12/11/2026. Copier l'adresse d'envoi du formulaire (`https://….sibforms.com/serve/…`) dans l'attribut `action` du
    `<form>` de `index.html`, à la place de `BREVO_FORM_URL…A_REMPLACER`, et remplacer
@@ -56,3 +56,22 @@ cadre d'un autre site. Risque accepté (rien n'est pré-rempli, double confirmat
 l'en-tête `frame-ancestors 'none'` dès qu'on passe sur un domaine à nous.
 
 La police Archivo est sous licence SIL Open Font License (`fonts/OFL.txt`).
+
+## Domaine (12/11/2026)
+
+`shift-permis.com`, acheté chez Cloudflare. Le fichier `CNAME` (créé par GitHub) le déclare à GitHub
+Pages. DNS chez Cloudflare : quatre enregistrements A vers `185.199.108.153` à `185.199.111.153`, et
+`www` en CNAME vers `vivienmcz.github.io`.
+
+Protection Cloudflare (nuage orange) voulue par Vivien, dans cet ordre :
+1. lignes en « DNS only » le temps que GitHub valide le domaine et crée le certificat, puis
+   « Enforce HTTPS » coché ;
+2. Cloudflare SSL/TLS en **Full (strict)**, puis lignes repassées en « Proxied » ;
+3. dans Cloudflare, couper tout ce qui ajoute du code à la page : Email Address Obfuscation,
+   Rocket Loader, injection automatique de Web Analytics, Bot Fight Mode.
+
+Si le site affiche un jour une erreur de certificat (renouvellement GitHub tous les ~3 mois),
+repasser les lignes en « DNS only » quelques minutes, puis en « Proxied ».
+
+Dans Brevo, les adresses de redirection du formulaire sont `https://shift-permis.com/merci.html` et
+`https://shift-permis.com/confirme.html` (les anciennes en `github.io` redirigent aussi).
