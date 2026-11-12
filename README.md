@@ -75,3 +75,7 @@ repasser les lignes en « DNS only » quelques minutes, puis en « Proxied ».
 
 Dans Brevo, les adresses de redirection du formulaire sont `https://shift-permis.com/merci.html` et
 `https://shift-permis.com/confirme.html` (les anciennes en `github.io` redirigent aussi).
+
+## Mettre à jour le style ou le script
+
+Le navigateur et Cloudflare gardent `style.css` et `motion.js` jusqu'à 4 h. À chaque modification de l'un d'eux, change le numéro `?v=AAAAMMJJ` dans les liens des pages HTML (tous les fichiers `*.html`), sinon les visiteurs gardent l'ancienne version.
