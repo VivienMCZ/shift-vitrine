@@ -334,8 +334,9 @@ html:has(#contraste:checked) .note{opacity:1}
 .evitement{position:absolute; left:16px; top:-100px; z-index:30; background:var(--blanc); color:var(--champ); font-weight:800; padding:12px 18px; border-radius:999px; text-decoration:none}
 .evitement:focus{top:12px}
 main:focus{outline:none}
-/* la pastille ne cache jamais le bas de la page (WCAG 2.4.11) */
-.pied{padding-bottom:112px}
+/* la pastille ne cache jamais le bas de la page (WCAG 2.4.11) : on lui garde la place à droite
+   au lieu d'une grande marge vide sous le pied de page */
+body:has(.reglages) .pied-haut > *,body:has(.reglages) .pied-mot{padding-right:104px}
 /* rien ne déborde à 320 px, même en « texte plus grand » (WCAG 1.4.10) */
 .suite-grille > *,.chiffres > *,.etapes > *{min-width:0}
 .h2,.titre,.final-titre,.carte-titre{overflow-wrap:break-word; hyphens:manual}
